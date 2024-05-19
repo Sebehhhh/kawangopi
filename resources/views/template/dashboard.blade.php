@@ -68,6 +68,7 @@
                     @yield('content')
 
                     <!-- / Content -->
+                    @include('template.dashboard_modal')
 
                     @include('template.dashboard_footer')
 

@@ -10,7 +10,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0 pe-4">
-            <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+            <a href="{{ route('landingpage.landingpage') }}"
+                class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
             <a href="{{ route('landingpage.about') }}"
                 class="nav-item nav-link {{ request()->is('landingpage/about') ? 'active' : '' }}">About</a>
             <a href="{{ route('landingpage.service') }}"
@@ -31,7 +32,7 @@
             <a href="{{ route('landingpage.contact') }}"
                 class="nav-item nav-link {{ request()->is('landingpage/contact') ? 'active' : '' }}">Contact</a>
         </div>
-        <a href="" class="btn btn-primary py-2 px-4">Login</a>
+        <a href="{{ route('login') }}" class="btn btn-primary py-2 px-4">Login</a>
     </div>
 
 </nav>

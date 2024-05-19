@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 d-flex justify-content-between">
+                            {{-- <div class="mb-3 d-flex justify-content-between">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="remember-me"
                                         name="remember">
@@ -133,7 +133,7 @@
                                 <a href="auth-forgot-password-basic.html" class="float-end mb-1">
                                     <span>Forgot Password?</span>
                                 </a>
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                             </div>
@@ -142,8 +142,8 @@
 
                         <p class="text-center">
                             <span>New on our platform?</span>
-                            <a href="auth-register-basic.html">
-                                <span>Create an account</span>
+                            <a href="{{ route('landingpage.landingpage') }}">
+                                <span><- Back To Homepage</span>
                             </a>
                         </p>
                     </div>

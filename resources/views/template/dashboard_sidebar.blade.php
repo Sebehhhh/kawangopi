@@ -54,6 +54,29 @@
                  <div data-i18n="Dashboard">Dashboard</div>
              </a>
          </li>
+
+         <li class="menu-item">
+             <a href="javascript:void(0);" class="menu-link menu-toggle">
+                 <i class="menu-icon tf-icons mdi mdi-cog"></i>
+                 <div data-i18n="Layouts">Setting</div>
+             </a>
+         </li>
+
+         <li class="menu-item">
+             <a href="javascript:void(0);" class="menu-link menu-toggle">
+                 <i class="menu-icon tf-icons mdi mdi-database-outline"></i>
+                 <div data-i18n="Layouts">Master Data</div>
+             </a>
+
+             <ul class="menu-sub">
+                 <li class="menu-item {{ Route::currentRouteName() == 'dashboard.kategoriProduk' ? 'active' : '' }}">
+                     <a href="{{ route('dashboard.kategoriProduk') }}" class="menu-link">
+                         <div data-i18n="Category Product">Category Product</div>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
          <li class="menu-item {{ Route::currentRouteName() == 'dashboard.user' ? 'active' : '' }}">
              <a href="{{ route('dashboard.user') }}" class="menu-link">
                  <i class="menu-icon tf-icons mdi mdi-account"></i>
@@ -61,47 +84,5 @@
              </a>
          </li>
 
-
-
-         <!-- Layouts -->
-         {{-- <li class="menu-item">
-             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                 <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
-                 <div data-i18n="Layouts">Layouts</div>
-             </a>
-
-             <ul class="menu-sub">
-                 <li class="menu-item">
-                     <a href="layouts-without-menu.html" class="menu-link">
-                         <div data-i18n="Without menu">Without menu</div>
-                     </a>
-                 </li>
-                 <li class="menu-item">
-                     <a href="layouts-without-navbar.html" class="menu-link">
-                         <div data-i18n="Without navbar">Without navbar</div>
-                     </a>
-                 </li>
-                 <li class="menu-item">
-                     <a href="layouts-container.html" class="menu-link">
-                         <div data-i18n="Container">Container</div>
-                     </a>
-                 </li>
-                 <li class="menu-item">
-                     <a href="layouts-fluid.html" class="menu-link">
-                         <div data-i18n="Fluid">Fluid</div>
-                     </a>
-                 </li>
-                 <li class="menu-item">
-                     <a href="layouts-blank.html" class="menu-link">
-                         <div data-i18n="Blank">Blank</div>
-                     </a>
-                 </li>
-             </ul>
-         </li> --}}
-
-
-         <li class="menu-header fw-medium mt-4">
-             <span class="menu-header-text">Apps &amp; Pages</span>
-         </li>
      </ul>
  </aside>

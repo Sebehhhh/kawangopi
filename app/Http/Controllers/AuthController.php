@@ -18,6 +18,7 @@ class AuthController extends Controller
             'message' => $message
         ]);
     }
+
     public function showLoginForm()
     {
         return view('login');

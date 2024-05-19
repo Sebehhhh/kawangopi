@@ -1,45 +1,41 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriProdukController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landingpage.index');
-})->name('home');
-
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
-
-    Route::get('/', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
-    Route::get('/user', [UserController::class, 'index'])->name('user');
+#GUEST
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 });
 
+#AUTHENTICATED
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/user', [UserController::class, 'index'])->name('user');
+
+        Route::get('/kategoriProduk', [KategoriProdukController::class, 'index'])->name('kategoriProduk');
+        Route::post('/kategoriProduk/store', [KategoriProdukController::class, 'store'])->name('kategoriProduk.store');
+        Route::put('/kategoriProduk/update', [KategoriProdukController::class, 'update'])->name('kategoriProduk.update');
+        Route::delete('/kategoriProduk/destroy/{id}', [KategoriProdukController::class, 'destroy'])->name('kategoriProduk.destroy');
+    });
+});
+
+#LANDINGPAGE
 Route::prefix('landingpage')->name('landingpage.')->group(function () {
-    Route::get('/about', function () {
-        return view('landingpage.about');
-    })->name('about');
-    Route::get('/service', function () {
-        return view('landingpage.service');
-    })->name('service');
-    Route::get('/menu', function () {
-        return view('landingpage.menu');
-    })->name('menu');
-    Route::get('/booking', function () {
-        return view('landingpage.booking');
-    })->name('booking');
-    Route::get('/team', function () {
-        return view('landingpage.team');
-    })->name('team');
-    Route::get('/testimonial', function () {
-        return view('landingpage.testimonial');
-    })->name('testimonial');
-    Route::get('/contact', function () {
-        return view('landingpage.contact');
-    })->name('contact');
+    Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
+    Route::get('/about', [LandingPageController::class, 'about'])->name('about');
+    Route::get('/service', [LandingPageController::class, 'service'])->name('service');
+    Route::get('/menu', [LandingPageController::class, 'menu'])->name('menu');
+    Route::get('/booking', [LandingPageController::class, 'booking'])->name('booking');
+    Route::get('/team', [LandingPageController::class, 'team'])->name('team');
+    Route::get('/testimonial', [LandingPageController::class, 'testimonial'])->name('testimonial');
+    Route::get('/contact', [LandingPageController::class, 'contact'])->name('contact');
 });

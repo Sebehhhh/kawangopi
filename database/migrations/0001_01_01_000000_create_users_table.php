@@ -17,9 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('alamat'); // Menambahkan kolom alamat
+            $table->string('telp'); // Menambahkan kolom telepon
+            $table->string('foto')->nullable(); // Menambahkan kolom foto, nullable karena tidak semua user mungkin memiliki foto
             $table->rememberToken();
             $table->timestamps();
         });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

@@ -48,4 +48,33 @@
             }
         });
     }
+
+    function confirmDeleteKategoriProduk(event, url) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var form = document.getElementById('delete-form');
+                form.action = url;
+                form.submit();
+            }
+        });
+    }
+
+    $('#editKategoriProdukModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button yang memicu modal
+        var id = button.data('id') // Extract info from data-* attributes
+        var nama = button.data('nama')
+
+        var modal = $(this)
+        modal.find('.modal-body #edit-id').val(id)
+        modal.find('.modal-body #edit-nama').val(nama)
+    })
 </script>

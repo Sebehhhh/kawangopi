@@ -17,6 +17,8 @@ class UserSeeder extends Seeder
             'name' => 'Seman',
             'email' => 'muhammad.seman030801@gmail.com',
             'password' => bcrypt('Seman@123'),
+            'alamat' => 'Alamat Pengguna',
+            'telp' => '08123456789',
         ]);
     }
 }
