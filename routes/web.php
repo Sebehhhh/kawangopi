@@ -21,6 +21,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/transaction-chart', [DashboardController::class, 'getTransactionChartData'])->name('chart');
+
         Route::get('/user', [UserController::class, 'index'])->name('user');
         Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
         Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
