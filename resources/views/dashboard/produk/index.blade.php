@@ -16,6 +16,57 @@
             </div>
         @endif
 
+        <div class="card mb-4">
+            <div class="card-body">
+                <form action="{{ route('dashboard.produk') }}" method="GET" id="filterForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama Produk</label>
+                                <input type="text" class="form-control" id="nama" name="nama"
+                                    placeholder="Masukkan Nama..." value="{{ request('nama') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="kategori" class="form-label">Kategori</label>
+                                <select class="form-select" id="kategori" name="kategori">
+                                    <option value="">~ Pilih Kategori ~</option>
+                                    @foreach ($categories as $kategori)
+                                        <option value="{{ $kategori->id }}"
+                                            {{ request('kategori') == $kategori->id ? 'selected' : '' }}>
+                                            {{ $kategori->nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="stok" class="form-label">Stok</label>
+                                <select class="form-select" id="stok" name="stok">
+                                    <option value="">~ Pilih Status Stok ~</option>
+                                    <option value="good" {{ request('stok') == 'good' ? 'selected' : '' }}>Good</option>
+                                    <option value="warning" {{ request('stok') == 'warning' ? 'selected' : '' }}>Warning
+                                    </option>
+                                    <option value="danger" {{ request('stok') == 'danger' ? 'selected' : '' }}>Danger
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary me-2" onclick="resetFilterProduk()"><i
+                                        class="mdi mdi-refresh"></i><span> Reset</span></button>
+                                <button type="submit" class="btn btn-primary"><i class="mdi mdi-filter-variant"></i><span>
+                                        Filter</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="d-flex justify-content-end mb-3">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahProdukModal">
                 Add

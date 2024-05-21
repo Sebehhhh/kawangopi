@@ -21,12 +21,34 @@ class ProdukController extends Controller
         ]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $produks = Produk::latest()->paginate(10);
         $categories = KategoriProduk::all();
-        return view('dashboard.produk.index', compact('produks', 'categories')); // Mengirim data pengguna ke tampilan user.index menggunakan compact
+        $query = Produk::query();
+
+        if ($request->filled('nama')) {
+            $query->where('nama', 'like', '%' . $request->nama . '%');
+        }
+
+        if ($request->filled('kategori')) {
+            $query->where('kategori_produk_id', $request->kategori);
+        }
+
+        if ($request->filled('stok')) {
+            if ($request->stok == 'good') {
+                $query->where('stok', '>', 20);
+            } elseif ($request->stok == 'warning') {
+                $query->where('stok', '>=', 10)->where('stok', '<=', 20);
+            } elseif ($request->stok == 'danger') {
+                $query->where('stok', '<', 10);
+            }
+        }
+
+        $produks = $query->paginate(10);
+
+        return view('dashboard.produk.index', compact('produks', 'categories'));
     }
+
 
     public function store(Request $request)
     {

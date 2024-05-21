@@ -32,6 +32,14 @@
 @endif
 
 <script>
+    function resetFilterProduk() {
+        document.getElementById('stok').value = '';
+        document.getElementById('kategori').value = '';
+        document.getElementById('nama').value = '';
+
+        document.getElementById('filterForm').submit();
+    }
+
     function resetFilter() {
         // Reset nilai input tanggal ke nilai awal (kosong)
         document.getElementById('start_date').value = '';
