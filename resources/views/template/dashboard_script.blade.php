@@ -87,6 +87,25 @@
         });
     }
 
+    function confirmDeleteProduct(event, url) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var form = document.getElementById('delete-product-form');
+                form.action = url;
+                form.submit();
+            }
+        });
+    }
+
     $('#editKategoriProdukModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget) // Button yang memicu modal
         var id = button.data('id') // Extract info from data-* attributes
@@ -104,7 +123,6 @@
         var email = button.data('email');
         var alamat = button.data('alamat');
         var telp = button.data('telp');
-        var foto = button.data('foto');
 
         var modal = $(this);
         modal.find('.modal-body #edit-user-id').val(id);
@@ -112,6 +130,21 @@
         modal.find('.modal-body #edit-email').val(email);
         modal.find('.modal-body #edit-alamat').val(alamat);
         modal.find('.modal-body #edit-telp').val(telp);
-        modal.find('.modal-body #edit-foto').val(foto);
+    });
+
+    $('#editProductModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Tombol yang memicu modal
+        var id = button.data('id'); // Ambil informasi dari atribut data-*
+        var kategori = button.data('kategori');
+        var nama = button.data('nama');
+        var harga = button.data('harga');
+        var stok = button.data('stok');
+
+        var modal = $(this);
+        modal.find('.modal-body #edit-product-id').val(id);
+        modal.find('.modal-body #edit-kategori-produk').val(kategori);
+        modal.find('.modal-body #edit-nama-produk').val(nama);
+        modal.find('.modal-body #edit-harga').val(harga);
+        modal.find('.modal-body #edit-stok').val(stok);
     });
 </script>

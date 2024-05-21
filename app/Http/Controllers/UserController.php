@@ -39,24 +39,34 @@ class UserController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
         ]);
 
-        // Upload foto
+        // Inisialisasi $fotoPath
+        $fotoPath = null;
+
+        // Upload foto jika ada
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('fotos', 'public');
         }
 
         // Buat objek baru User dengan data yang diterima dari form
-        User::create([
+        $userData = [
             'name' => $validatedData['nama'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
             'alamat' => $validatedData['alamat'],
             'telp' => $validatedData['telp'],
-            'foto' => $fotoPath,
-        ]);
+        ];
+
+        // Tambahkan foto ke data pengguna jika ada
+        if ($fotoPath !== null) {
+            $userData['foto'] = $fotoPath;
+        }
+
+        User::create($userData);
 
         $this->setFlashAlert('success', 'Success!', 'You have successfully added a new user.');
         return redirect()->back();
     }
+
 
     public function update(Request $request)
     {

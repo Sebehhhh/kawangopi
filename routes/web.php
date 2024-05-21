@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/kategoriProduk/store', [KategoriProdukController::class, 'store'])->name('kategoriProduk.store');
         Route::put('/kategoriProduk/update', [KategoriProdukController::class, 'update'])->name('kategoriProduk.update');
         Route::delete('/kategoriProduk/destroy/{id}', [KategoriProdukController::class, 'destroy'])->name('kategoriProduk.destroy');
+
+        Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
+        Route::post('/produk/store', [produkController::class, 'store'])->name('produk.store');
+        Route::put('/produk/update', [produkController::class, 'update'])->name('produk.update');
+        Route::delete('/produk/destroy/{id}', [produkController::class, 'destroy'])->name('produk.destroy');
     });
 });
 

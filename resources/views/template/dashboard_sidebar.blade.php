@@ -74,6 +74,11 @@
                          <div data-i18n="Category Product">Category Product</div>
                      </a>
                  </li>
+                 <li class="menu-item {{ Route::currentRouteName() == 'dashboard.produk' ? 'active' : '' }}">
+                     <a href="{{ route('dashboard.produk') }}" class="menu-link">
+                         <div data-i18n="Product">Product</div>
+                     </a>
+                 </li>
              </ul>
          </li>
 
@@ -83,6 +88,8 @@
                  <div data-i18n="Users">User</div>
              </a>
          </li>
+
+         
 
      </ul>
  </aside>
