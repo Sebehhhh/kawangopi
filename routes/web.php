@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/produk/destroy/{id}', [produkController::class, 'destroy'])->name('produk.destroy');
 
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+        Route::get('/transaksi/export', [TransaksiController::class, 'export'])->name('transaksi.export');
         Route::post('/transaksi/store', [transaksiController::class, 'store'])->name('transaksi.store');
         Route::put('/transaksi/update', [transaksiController::class, 'update'])->name('transaksi.update');
         Route::delete('/transaksi/destroy/{id}', [transaksiController::class, 'destroy'])->name('transaksi.destroy');

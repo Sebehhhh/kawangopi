@@ -18,10 +18,48 @@
             </div>
         @endif
 
+        <div class="card mb-4">
+            <div class="card-body">
+                <form action="{{ route('dashboard.transaksi') }}" method="GET" id="filterForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="start_date" class="form-label">Tanggal Awal</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date"
+                                    value="{{ $start_date }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="end_date" class="form-label">Tanggal Akhir</label>
+                                <input type="date" class="form-control" id="end_date" name="end_date"
+                                    value="{{ $end_date }}">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-secondary mt-4" onclick="resetFilter()"><i
+                                        class="mdi mdi-refresh"></i><span>Reset</span></button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary mt-4"><i
+                                        class="mdi mdi-filter-variant"></i><span>Filter</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
         <div class="d-flex justify-content-end mb-3">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahTransaksiModal">
-                Add
+                <i class="mdi mdi-database-plus"></i>Add
             </button>
+            <a href="{{ route('dashboard.transaksi.export') }}" class="btn btn-success ms-2"><i
+                    class="mdi mdi-file-excel"></i> Export to Excel</a>
         </div>
 
         <!-- Hoverable Table rows -->

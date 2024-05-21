@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransaksiExport;
 use App\Http\Controllers\Controller;
 use App\Models\Produk;
 use App\Models\Transaksi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransaksiController extends Controller
 {
@@ -20,12 +23,47 @@ class TransaksiController extends Controller
         ]);
     }
 
-    public function index()
+    public function export()
+    {
+        return Excel::download(new TransaksiExport, 'transaksis.xlsx');
+    }
+
+    public function index(Request $request)
     {
         $produks = Produk::all();
-        $transaksis = Transaksi::latest()->paginate(10);
-        return view('dashboard.transaksi.index', compact('transaksis', 'produks'));
+
+        // Ambil data transaksi yang sudah diurutkan dari yang terbaru
+        $transaksis = Transaksi::latest();
+
+        // Inisialisasi variabel untuk menyimpan nilai tanggal filter
+        $start_date = null;
+        $end_date = null;
+
+        // Proses filter berdasarkan tanggal jika dimasukkan dalam request
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $start_date = $request->start_date;
+            $end_date = $request->end_date;
+
+            $start_date_parsed = Carbon::parse($start_date);
+            $end_date_parsed = Carbon::parse($end_date);
+
+            // Pastikan tanggal awal kurang dari tanggal akhir
+            if ($start_date_parsed->lessThanOrEqualTo($end_date_parsed)) {
+                $transaksis->whereBetween('created_at', [$start_date_parsed->startOfDay(), $end_date_parsed->endOfDay()]);
+            } else {
+                $this->setFlashAlert('error', 'Failed!', 'Tanggal Tidak Sesuai!');
+                return redirect()->back();
+            }
+        }
+
+        // Paginasi hasil transaksi
+        $transaksis = $transaksis->paginate(10);
+
+        // Kirim kembali nilai tanggal filter ke view
+        return view('dashboard.transaksi.index', compact('transaksis', 'produks', 'start_date', 'end_date'));
     }
+
+
 
     public function store(Request $request)
     {

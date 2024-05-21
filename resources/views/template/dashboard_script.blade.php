@@ -32,6 +32,14 @@
 @endif
 
 <script>
+    function resetFilter() {
+        // Reset nilai input tanggal ke nilai awal (kosong)
+        document.getElementById('start_date').value = '';
+        document.getElementById('end_date').value = '';
+        // Submit form setelah nilai direset
+        document.getElementById('filterForm').submit();
+    }
+
     function confirmLogout(event) {
         event.preventDefault();
 
