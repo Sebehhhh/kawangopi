@@ -20,6 +20,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/user', [UserController::class, 'index'])->name('user');
+        Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+        Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+        Route::delete('/user/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::get('/kategoriProduk', [KategoriProdukController::class, 'index'])->name('kategoriProduk');
         Route::post('/kategoriProduk/store', [KategoriProdukController::class, 'store'])->name('kategoriProduk.store');
@@ -29,8 +32,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 #LANDINGPAGE
+Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
 Route::prefix('landingpage')->name('landingpage.')->group(function () {
-    Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
     Route::get('/about', [LandingPageController::class, 'about'])->name('about');
     Route::get('/service', [LandingPageController::class, 'service'])->name('service');
     Route::get('/menu', [LandingPageController::class, 'menu'])->name('menu');

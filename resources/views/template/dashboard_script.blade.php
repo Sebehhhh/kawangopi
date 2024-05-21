@@ -61,7 +61,26 @@
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                var form = document.getElementById('delete-form');
+                var form = document.getElementById('delete-kategori-produk-form');
+                form.action = url;
+                form.submit();
+            }
+        });
+    }
+
+    function confirmDeleteUser(event, url) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var form = document.getElementById('delete-user-form');
                 form.action = url;
                 form.submit();
             }
@@ -75,6 +94,24 @@
 
         var modal = $(this)
         modal.find('.modal-body #edit-id').val(id)
-        modal.find('.modal-body #edit-nama').val(nama)
+        modal.find('.modal-body #edit-nama-kategori-produk').val(nama)
     })
+
+    $('#editUserModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Tombol yang memicu modal
+        var id = button.data('id'); // Ambil informasi dari atribut data-*
+        var nama = button.data('nama');
+        var email = button.data('email');
+        var alamat = button.data('alamat');
+        var telp = button.data('telp');
+        var foto = button.data('foto');
+
+        var modal = $(this);
+        modal.find('.modal-body #edit-user-id').val(id);
+        modal.find('.modal-body #edit-nama-user').val(nama);
+        modal.find('.modal-body #edit-email').val(email);
+        modal.find('.modal-body #edit-alamat').val(alamat);
+        modal.find('.modal-body #edit-telp').val(telp);
+        modal.find('.modal-body #edit-foto').val(foto);
+    });
 </script>

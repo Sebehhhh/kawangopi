@@ -5,6 +5,15 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4"><span class="text-muted fw-light">Product Category /</span> ...</h4>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <div class="d-flex justify-content-end mb-3">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahKategoriProdukModal">
@@ -57,7 +66,7 @@
 
 
     <!-- Form Hapus Kategori Produk -->
-    <form id="delete-form" action="" method="POST" style="display: none;">
+    <form id="delete-kategori-produk-form" action="" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>

@@ -141,8 +141,7 @@
 
 
                         <p class="text-center">
-                            <span>New on our platform?</span>
-                            <a href="{{ route('landingpage.landingpage') }}">
+                            <a href="{{ route('landingpage') }}">
                                 <span><- Back To Homepage</span>
                             </a>
                         </p>

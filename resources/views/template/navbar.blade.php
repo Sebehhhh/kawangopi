@@ -10,7 +10,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0 pe-4">
-            <a href="{{ route('landingpage.landingpage') }}"
+            <a href="{{ route('landingpage') }}"
                 class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
             <a href="{{ route('landingpage.about') }}"
                 class="nav-item nav-link {{ request()->is('landingpage/about') ? 'active' : '' }}">About</a>
