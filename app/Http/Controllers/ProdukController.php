@@ -23,7 +23,7 @@ class ProdukController extends Controller
 
     public function index()
     {
-        $produks = Produk::all();
+        $produks = Produk::latest()->paginate(10);
         $categories = KategoriProduk::all();
         return view('dashboard.produk.index', compact('produks', 'categories')); // Mengirim data pengguna ke tampilan user.index menggunakan compact
     }

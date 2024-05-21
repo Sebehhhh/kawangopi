@@ -1,6 +1,6 @@
 @extends('template.dashboard')
 
-@section('title', 'Produk')
+@section('title', 'Product')
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -52,7 +52,17 @@
                                         No Image
                                     @endif
                                 </td>
-                                <td>{{ $product->stok }}</td>
+                                <td>
+                                    <b>{{ $product->stok }}</b>
+                                    @if ($product->stok > 20)
+                                        <span class="badge bg-success">Good</span>
+                                    @elseif ($product->stok >= 10)
+                                        <span class="badge bg-warning">Warning</span>
+                                    @else
+                                        <span class="badge bg-danger">Danger</span>
+                                    @endif
+
+                                </td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -76,6 +86,11 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <nav aria-label="Page navigation" class="mt-3 mx-3">
+                    {{ $produks->links('pagination::bootstrap-5') }}
+                </nav>
+
             </div>
         </div>
         <!--/ Hoverable Table rows -->

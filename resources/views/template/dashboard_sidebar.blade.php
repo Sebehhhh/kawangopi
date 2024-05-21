@@ -89,7 +89,12 @@
              </a>
          </li>
 
-         
+         <li class="menu-item {{ Route::currentRouteName() == 'dashboard.transaksi' ? 'active' : '' }}">
+             <a href="{{ route('dashboard.transaksi') }}" class="menu-link">
+                 <i class="menu-icon tf-icons mdi mdi-cash"></i>
+                 <div data-i18n="Users">Transaction</div>
+             </a>
+         </li>
 
      </ul>
  </aside>

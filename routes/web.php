@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/produk/store', [produkController::class, 'store'])->name('produk.store');
         Route::put('/produk/update', [produkController::class, 'update'])->name('produk.update');
         Route::delete('/produk/destroy/{id}', [produkController::class, 'destroy'])->name('produk.destroy');
+
+        Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+        Route::post('/transaksi/store', [transaksiController::class, 'store'])->name('transaksi.store');
+        Route::put('/transaksi/update', [transaksiController::class, 'update'])->name('transaksi.update');
+        Route::delete('/transaksi/destroy/{id}', [transaksiController::class, 'destroy'])->name('transaksi.destroy');
     });
 });
 
