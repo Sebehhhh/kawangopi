@@ -122,6 +122,25 @@
         });
     }
 
+    function confirmDeleteBlog(event, url) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var form = document.getElementById('delete-blog-form');
+                form.action = url;
+                form.submit();
+            }
+        });
+    }
+
     $('#editKategoriProdukModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget) // Button yang memicu modal
         var id = button.data('id') // Extract info from data-* attributes
@@ -162,5 +181,17 @@
         modal.find('.modal-body #edit-nama-produk').val(nama);
         modal.find('.modal-body #edit-harga').val(harga);
         modal.find('.modal-body #edit-stok').val(stok);
+    });
+
+    $('#editBlogModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var id = button.data('id'); // Extract info from data-* attributes
+        var judul = button.data('judul');
+        var konten = button.data('konten');
+
+        var modal = $(this);
+        modal.find('.modal-body #edit-blog-id').val(id);
+        modal.find('.modal-body #edit-judul').val(judul);
+        modal.find('.modal-body #edit-konten').val(konten);
     });
 </script>

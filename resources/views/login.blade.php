@@ -139,10 +139,9 @@
                             </div>
                         </form>
 
-
                         <p class="text-center">
                             <a href="{{ route('landingpage') }}">
-                                <span><- Back To Homepage</span>
+                                <span><i class="mdi mdi-home"></i> Back To Homepage</span>
                             </a>
                         </p>
                     </div>
