@@ -60,6 +60,14 @@
                  <i class="menu-icon tf-icons mdi mdi-cog"></i>
                  <div data-i18n="Layouts">Setting</div>
              </a>
+
+             <ul class="menu-sub">
+                 <li class="menu-item {{ Route::currentRouteName() == 'dashboard.about' ? 'active' : '' }}">
+                     <a href="{{ route('dashboard.about') }}" class="menu-link">
+                         <div data-i18n="About">About</div>
+                     </a>
+                 </li>
+             </ul>
          </li>
 
          <li class="menu-item">
@@ -92,7 +100,14 @@
          <li class="menu-item {{ Route::currentRouteName() == 'dashboard.transaksi' ? 'active' : '' }}">
              <a href="{{ route('dashboard.transaksi') }}" class="menu-link">
                  <i class="menu-icon tf-icons mdi mdi-cash"></i>
-                 <div data-i18n="Users">Transaction</div>
+                 <div data-i18n="Transaction">Transaction</div>
+             </a>
+         </li>
+
+         <li class="menu-item {{ Route::currentRouteName() == 'dashboard.blog' ? 'active' : '' }}">
+             <a href="{{ route('dashboard.blog') }}" class="menu-link">
+                 <i class="menu-icon tf-icons mdi mdi-post-outline"></i>
+                 <div data-i18n="Blog">Blog</div>
              </a>
          </li>
 

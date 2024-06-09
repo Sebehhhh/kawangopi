@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Route;
 
 #GUEST
@@ -34,15 +37,23 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/kategoriProduk/destroy/{id}', [KategoriProdukController::class, 'destroy'])->name('kategoriProduk.destroy');
 
         Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
-        Route::post('/produk/store', [produkController::class, 'store'])->name('produk.store');
-        Route::put('/produk/update', [produkController::class, 'update'])->name('produk.update');
-        Route::delete('/produk/destroy/{id}', [produkController::class, 'destroy'])->name('produk.destroy');
+        Route::post('/produk/store', [ProdukController::class, 'store'])->name('produk.store');
+        Route::put('/produk/update', [ProdukController::class, 'update'])->name('produk.update');
+        Route::delete('/produk/destroy/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
+
+        Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+        Route::post('/blog/store', [BlogController::class, 'store'])->name('blog.store');
+        Route::put('/blog/update', [BlogController::class, 'update'])->name('blog.update');
+        Route::delete('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+        Route::get('/about', [AboutController::class, 'index'])->name('about');
+        Route::put('/about/update', [AboutController::class, 'update'])->name('about.update');
 
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
         Route::get('/transaksi/export', [TransaksiController::class, 'export'])->name('transaksi.export');
-        Route::post('/transaksi/store', [transaksiController::class, 'store'])->name('transaksi.store');
-        Route::put('/transaksi/update', [transaksiController::class, 'update'])->name('transaksi.update');
-        Route::delete('/transaksi/destroy/{id}', [transaksiController::class, 'destroy'])->name('transaksi.destroy');
+        Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
+        Route::put('/transaksi/update', [TransaksiController::class, 'update'])->name('transaksi.update');
+        Route::delete('/transaksi/destroy/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
     });
 });
 
