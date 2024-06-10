@@ -27,7 +27,7 @@
                 <form action="{{ route('dashboard.about.update') }}" method="POST">
                     @csrf
                     @method('PUT')
-                    @foreach ($about as $about)
+                    @if ($about)
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="nama" name="nama"
@@ -55,7 +55,31 @@
                             <input type="text" class="form-control" id="telp" name="telp"
                                 value="{{ $about->telp }}" required>
                         </div>
-                    @endforeach
+                    @endif
+
+                    @if ($socialMedia)
+                        <div class="mb-3">
+                            <label for="facebook" class="form-label">Facebook</label>
+                            <input type="text" class="form-control" id="facebook" name="facebook"
+                                value="{{ $socialMedia->facebook }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="instagram" class="form-label">Instagram</label>
+                            <input type="text" class="form-control" id="instagram" name="instagram"
+                                value="{{ $socialMedia->instagram }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tiktok" class="form-label">TikTok</label>
+                            <input type="text" class="form-control" id="tiktok" name="tiktok"
+                                value="{{ $socialMedia->tiktok }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="whatsapp" class="form-label">WhatsApp</label>
+                            <input type="text" class="form-control" id="whatsapp" name="whatsapp"
+                                value="{{ $socialMedia->whatsapp }}">
+                        </div>
+                    @endif
+
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
