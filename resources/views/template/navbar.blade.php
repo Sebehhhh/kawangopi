@@ -14,11 +14,11 @@
                 class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
             <a href="{{ route('landingpage.about') }}"
                 class="nav-item nav-link {{ request()->is('landingpage/about') ? 'active' : '' }}">About</a>
-            <a href="{{ route('landingpage.service') }}"
-                class="nav-item nav-link {{ request()->is('landingpage/service') ? 'active' : '' }}">Service</a>
+            {{-- <a href="{{ route('landingpage.service') }}"
+                class="nav-item nav-link {{ request()->is('landingpage/service') ? 'active' : '' }}">Service</a> --}}
             <a href="{{ route('landingpage.menu') }}"
                 class="nav-item nav-link {{ request()->is('landingpage/menu') ? 'active' : '' }}">Menu</a>
-            <div class="nav-item dropdown">
+            {{-- <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">
                     <a href="{{ route('landingpage.booking') }}"
@@ -28,7 +28,7 @@
                     <a href="{{ route('landingpage.testimonial') }}"
                         class="dropdown-item {{ request()->is('landingpage/testimonial') ? 'active' : '' }}">Testimonial</a>
                 </div>
-            </div>
+            </div> --}}
             <a href="{{ route('landingpage.contact') }}"
                 class="nav-item nav-link {{ request()->is('landingpage/contact') ? 'active' : '' }}">Contact</a>
         </div>

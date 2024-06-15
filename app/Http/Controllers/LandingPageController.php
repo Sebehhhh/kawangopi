@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\KategoriProduk;
 use App\Models\Produk;
+use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,13 +22,16 @@ class LandingPageController extends Controller
             ->groupBy('category_id');
         // dd($categories);
         $products = Produk::all();
+        $testies = Testimoni::all();
 
-        return view('landingpage.index', compact('categories', 'products'));
+        return view('landingpage.index', compact('categories', 'products', 'testies'));
     }
 
     public function about()
     {
-        return view('landingpage.about');
+        $about = About::first();
+        // dd($about);
+        return view('landingpage.about', compact('about'));
     }
 
     public function service()

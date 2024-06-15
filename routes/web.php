@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Console\AboutCommand;
@@ -65,6 +66,9 @@ Route::prefix('landingpage')->name('landingpage.')->group(function () {
     Route::get('/menu', [LandingPageController::class, 'menu'])->name('menu');
     Route::get('/booking', [LandingPageController::class, 'booking'])->name('booking');
     Route::get('/team', [LandingPageController::class, 'team'])->name('team');
+
+    Route::post('/testimoni', [TestimoniController::class, 'store'])->name('testimoni.store');
     Route::get('/testimonial', [LandingPageController::class, 'testimonial'])->name('testimonial');
+
     Route::get('/contact', [LandingPageController::class, 'contact'])->name('contact');
 });
