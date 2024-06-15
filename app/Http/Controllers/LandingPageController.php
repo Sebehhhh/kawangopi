@@ -3,13 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\KategoriProduk;
+use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
-        return view('landingpage.index');
+        // $categories = KategoriProduk::with('products')->get();
+        $categories = DB::table('kategori_produk')
+            ->join('produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
+            ->select('kategori_produk.id as category_id', 'kategori_produk.nama as category_name', 'produk.*')
+            ->get()
+            ->groupBy('category_id');
+        // dd($categories);
+        $products = Produk::all();
+
+        return view('landingpage.index', compact('categories', 'products'));
     }
 
     public function about()
