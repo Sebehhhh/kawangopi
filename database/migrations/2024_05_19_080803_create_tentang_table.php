@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tentang', function (Blueprint $table) {
-            // $table->id(); // Kolom id otomatis sebagai primary key dan auto-increment
+            $table->id(); // Kolom id otomatis sebagai primary key dan auto-increment
             $table->string('nama'); // Kolom nama
             $table->text('visi'); // Kolom visi
             $table->text('misi'); // Kolom misi

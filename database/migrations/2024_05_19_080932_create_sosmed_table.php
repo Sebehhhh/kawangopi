@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sosmed', function (Blueprint $table) {
-            // $table->id(); // Kolom id otomatis sebagai primary key dan auto-increment
+            $table->id(); // Kolom id otomatis sebagai primary key dan auto-increment
             $table->string('instagram')->nullable(); // Kolom untuk link Instagram, nullable
             $table->string('facebook')->nullable(); // Kolom untuk link Facebook, nullable
             $table->string('tiktok')->nullable(); // Kolom untuk link TikTok, nullable

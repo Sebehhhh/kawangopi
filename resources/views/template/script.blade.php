@@ -12,3 +12,15 @@
 
   <!-- Template Javascript -->
   <script src="{{ asset('assets/landingpage/js/main.js') }}"></script>
+
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const successAlert = document.getElementById('success-alert');
+          if (successAlert) {
+              setTimeout(() => {
+                  successAlert.style.opacity = '0';
+                  setTimeout(() => successAlert.remove(), 500);
+              }, 3000);
+          }
+      });
+  </script>
