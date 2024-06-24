@@ -41,7 +41,16 @@ class LandingPageController extends Controller
 
     public function menu()
     {
-        return view('landingpage.menu');
+        $categories = DB::table('kategori_produk')
+            ->join('produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
+            ->select('kategori_produk.id as category_id', 'kategori_produk.nama as category_name', 'produk.*')
+            ->get()
+            ->groupBy('category_id');
+        // dd($categories);
+        $products = Produk::all();
+        $testies = Testimoni::all();
+
+        return view('landingpage.menu', compact('categories', 'products', 'testies'));
     }
 
     public function booking()
