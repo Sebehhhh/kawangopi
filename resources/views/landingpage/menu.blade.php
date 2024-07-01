@@ -48,8 +48,9 @@
                                     @foreach ($products as $product)
                                         <div class="col-lg-6">
                                             <div class="d-flex align-items-center">
-                                                <img class="flex-shrink-0 img-fluid rounded" src="{{ $product->gambar }}"
-                                                    alt="" style="width: 80px;">
+                                                <img class="flex-shrink-0 img-fluid rounded"
+                                                    src="{{ Storage::url($product->gambar) }}" alt=""
+                                                    style="width: 80px;">
                                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                         <span>{{ $product->nama }}</span>
@@ -63,6 +64,7 @@
                                 </div>
                             </div>
                         @endforeach
+
                     </div>
 
                 </div>

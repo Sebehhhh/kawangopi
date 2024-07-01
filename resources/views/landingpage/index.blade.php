@@ -235,10 +235,10 @@
         <div class="row g-0">
             <div class="col-md-6">
                 <div class="video">
-                    <button type="button" class="btn-play" data-bs-toggle="modal"
+                    {{-- <button type="button" class="btn-play" data-bs-toggle="modal"
                         data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
                         <span></span>
-                    </button>
+                    </button> --}}
                 </div>
             </div>
             <div class="col-md-6 bg-dark d-flex align-items-center">
