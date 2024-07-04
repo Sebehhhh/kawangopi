@@ -211,7 +211,8 @@
                                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                         <span>{{ $product->nama }}</span>
-                                                        <span class="text-primary">${{ $product->harga }}</span>
+                                                        <span class="text-primary">Rp.
+                                                            {{ number_format($product->harga) }}</span>
                                                     </h5>
                                                     {{-- <small class="fst-italic">{{ $product->description }}</small> --}}
                                                 </div>
