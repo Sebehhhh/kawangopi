@@ -23,7 +23,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::prefix('dashboard/')->name('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/transaction-chart', [DashboardController::class, 'getTransactionChartData'])->name('chart');
 
