@@ -1,7 +1,7 @@
 <!-- Navbar & Hero Start -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-    <a href="" class="navbar-brand p-0">
+    <a href="#" class="navbar-brand p-0">
         <img src="{{ asset('assets/img/horizontal.png') }}" alt="Logo" class="img-fluid">
     </a>
 

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Blog;
 use App\Models\KategoriProduk;
 use App\Models\Produk;
+use App\Models\Sosmed;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,9 +25,11 @@ class LandingPageController extends Controller
         // dd($categories);
         $products = Produk::all();
         $testies = Testimoni::all();
+        $blogs = Blog::all(); // Fetch all blog entries
 
-        return view('landingpage.index', compact('categories', 'products', 'testies'));
+        return view('landingpage.index', compact('categories', 'products', 'testies', 'blogs'));
     }
+
 
     public function about()
     {
@@ -70,6 +74,7 @@ class LandingPageController extends Controller
 
     public function contact()
     {
-        return view('landingpage.contact');
+        $sosmed = Sosmed::first(); // Assuming you only have one record in the sosmed table
+        return view('landingpage.contact', compact('sosmed'));
     }
 }
