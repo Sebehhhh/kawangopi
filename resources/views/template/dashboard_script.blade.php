@@ -32,6 +32,12 @@
 @endif
 
 <script>
+    $(document).ready(function() {
+        $('[data-bs-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<script>
     function resetFilterProduk() {
         document.getElementById('stok').value = '';
         document.getElementById('kategori').value = '';

@@ -41,7 +41,8 @@
                         </div>
                         <div class="col-md-3">
                             <h5 class="section-title ff-secondary fw-normal text-start text-primary">TikTok</h5>
-                            <p><i class="fab fa-music text-primary me-2"></i><a href="{{ $sosmed->tiktok }}">Kawa Ngopi</a>
+                            <p><i class="fab fa-music text-primary me-2"></i><a href="{{ $sosmed->tiktok }}">Kawa
+                                    Ngopi</a>
                             </p>
                         </div>
                         <div class="col-md-3">

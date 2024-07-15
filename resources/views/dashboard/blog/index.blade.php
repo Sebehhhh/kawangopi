@@ -44,7 +44,11 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->judul }}</td>
                                 <td>{{ $post->user->name }}</td>
-                                <td>{{ $post->konten }}</td>
+                                <td>
+                                    <span data-bs-toggle="tooltip" title="{{ $post->konten }}">
+                                        {{ \Illuminate\Support\Str::limit($post->konten, 50) }}
+                                    </span>
+                                </td>
                                 <td>
                                     @if ($post->gambar)
                                         <img src="{{ asset('storage/' . $post->gambar) }}" alt="Blog Image"

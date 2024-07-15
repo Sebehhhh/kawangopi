@@ -151,7 +151,7 @@
                         <input type="hidden" id="edit-user-id" name="id">
                         <div class="mb-3">
                             <label for="edit-nama" class="form-label">Nama <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="edit-nama-user" name="nama"
+                            <input type="text" class="form-control" id="edit-nama-user" name="name"
                                 placeholder="Masukkan Nama" required>
                         </div>
                         <div class="mb-3">
@@ -163,7 +163,7 @@
                             <label for="edit-password" class="form-label">Password <span
                                     class="text-danger">*</span></label>
                             <input type="password" class="form-control" id="edit-password" name="password"
-                                placeholder="Masukkan Password" required>
+                                placeholder="Masukkan Password">
                         </div>
                         <div class="mb-3">
                             <label for="edit-alamat" class="form-label">Alamat <span class="text-danger">*</span></label>

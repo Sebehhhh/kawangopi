@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Uuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -73,15 +74,16 @@ class UserController extends Controller
         // Validasi data yang diterima dari formulir
         $validatedData = $request->validate([
             'id' => 'required|exists:users,id',
-            'nama' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8',
             'alamat' => 'required|string|max:255',
             'telp' => 'required|string|max:20',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024', // Jika Anda ingin memvalidasi gambar
         ]);
 
         // Cari pengguna yang akan diperbarui
-        $user = User::find($validatedData['id']);
+        $user = User::findOrFail($validatedData['id']);
 
         // Jika ada file foto yang diunggah, hapus foto lama dan simpan yang baru
         if ($request->hasFile('foto')) {
@@ -95,7 +97,13 @@ class UserController extends Controller
             $validatedData['foto'] = str_replace('public/', '', $fotoPath);
         }
 
-        // Update data pengguna
+        // Jika password tidak null, maka update password
+        if ($request->input('password')) {
+            $validatedData['password'] = bcrypt($request->input('password'));
+        } else {
+            unset($validatedData['password']);
+        }
+
         $user->update($validatedData);
 
         // Set flash message untuk notifikasi
@@ -104,7 +112,6 @@ class UserController extends Controller
         // Redirect ke halaman index
         return redirect()->back();
     }
-
 
 
     public function destroy($id)

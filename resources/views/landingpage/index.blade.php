@@ -11,8 +11,6 @@
                     <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam
                         dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
                         stet lorem sit clita duo justo magna dolore erat amet</p>
-                    <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A
-                        Table</a>
                 </div>
                 <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                     <img class="img-fluid" src="{{ asset('assets/img/circle.png') }}" alt="">
@@ -86,13 +84,41 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $blog->judul }}</h5>
                                 <p class="card-text">{{ Str::limit($blog->konten, 100) }}</p>
-                                <a href="#" class="btn btn-primary">Read More</a>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#blogModal{{ $blog->id }}">
+                                    Read More
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="blogModal{{ $blog->id }}" tabindex="-1"
+                        aria-labelledby="blogModalLabel{{ $blog->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg"> <!-- modal-lg untuk membuat modal lebih besar -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="blogModalLabel{{ $blog->id }}">{{ $blog->judul }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @if ($blog->gambar)
+                                        <img src="{{ asset('storage/' . $blog->gambar) }}" class="img-fluid mb-3"
+                                            alt="{{ $blog->judul }}">
+                                    @endif
+                                    <h5>{{ $blog->judul }}</h5>
+                                    <p><strong>Published:</strong> {{ $blog->created_at }}</p>
+                                    <p><strong>Author:</strong> {{ $blog->user->name }}</p>
+                                    <p>{{ $blog->konten }}</p> <!-- Konten akan mengalir ke bawah secara alami -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
+
     </div>
 
     <!-- About Start -->
