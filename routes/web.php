@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProdukController;
@@ -46,6 +47,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/blog/store', [BlogController::class, 'store'])->name('blog.store');
         Route::put('/blog/update', [BlogController::class, 'update'])->name('blog.update');
         Route::delete('/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+        Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
+        Route::post('/galeri/store', [galeriController::class, 'store'])->name('galeri.store');
+        Route::put('/galeri/update', [galeriController::class, 'update'])->name('galeri.update');
+        Route::delete('/galeri/destroy/{id}', [galeriController::class, 'destroy'])->name('galeri.destroy');
 
         Route::get('/about', [AboutController::class, 'index'])->name('about');
         Route::put('/about/update', [AboutController::class, 'update'])->name('about.update');

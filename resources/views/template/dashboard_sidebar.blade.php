@@ -42,6 +42,13 @@
                      </a>
                  </li>
              </ul>
+             <ul class="menu-sub">
+                 <li class="menu-item {{ Route::currentRouteName() == 'dashboard.galeri' ? 'active' : '' }}">
+                     <a href="{{ route('dashboard.galeri') }}" class="menu-link">
+                         <div data-i18n="Galeri">Galeri</div>
+                     </a>
+                 </li>
+             </ul>
          </li>
 
          <li class="menu-item">

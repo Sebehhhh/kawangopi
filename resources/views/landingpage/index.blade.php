@@ -123,55 +123,69 @@
 
     <!-- About Start -->
     <div class="container-xxl py-5">
-
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="row g-3">
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
-                                src="{{ asset('assets/img/p7.jpg') }}">
-                        </div>
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-75 wowlok4=] zoomIn" data-wow-delay="0.3s"
-                                src="{{ asset('assets/img/p8.jpg') }}" style="margin-top: 25%;">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
-                                src="{{ asset('assets/img/p10.jpg') }}">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
-                                src="{{ asset('assets/img/p12.jpg') }}">
-                        </div>
+                        @php
+                            $imageCount = $galeriItems->count();
+                            $maxImages = 8;
+                            $images = $galeriItems->slice(0, 4); // First 4 images
+                        @endphp
 
+                        @foreach ($images as $index => $galeri)
+                            <div class="col-6 {{ $index % 2 == 0 ? 'text-start' : 'text-end' }}">
+                                <img class="img-fluid rounded {{ $index % 2 == 0 ? 'w-100' : 'w-75' }} wow zoomIn"
+                                    data-wow-delay="{{ $index * 0.2 + 0.1 }}s"
+                                    src="{{ asset('storage/' . $galeri->gambar) }}">
+                            </div>
+                        @endforeach
+
+                        <!-- Placeholder images if less than 4 images in the first column -->
+                        @for ($i = $images->count(); $i < 4; $i++)
+                            <div class="col-6 {{ $i % 2 == 0 ? 'text-start' : 'text-end' }}">
+                                <img class="img-fluid rounded w-100 wow zoomIn"
+                                    data-wow-delay="{{ ($i + $images->count()) * 0.2 + 0.1 }}s"
+                                    src="{{ asset('assets/img/placeholder.jpg') }}" alt="Placeholder">
+                            </div>
+                        @endfor
                     </div>
                 </div>
+
                 <div class="col-lg-6">
                     <div class="row g-3">
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
-                                src="{{ asset('assets/img/p17.jpg') }}">
-                        </div>
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-75 wowlok4=] zoomIn" data-wow-delay="0.3s"
-                                src="{{ asset('assets/img/p19.jpg') }}" style="margin-top: 25%;">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
-                                src="{{ asset('assets/img/p20.jpg') }}">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
-                                src="{{ asset('assets/img/p22.jpg') }}">
-                        </div>
+                        @php
+                            $images = $galeriItems->slice(4, 4); // Next 4 images
+                        @endphp
 
+                        @foreach ($images as $index => $galeri)
+                            <div class="col-6 {{ $index % 2 == 0 ? 'text-start' : 'text-end' }}">
+                                <img class="img-fluid rounded {{ $index % 2 == 0 ? 'w-100' : 'w-75' }} wow zoomIn"
+                                    data-wow-delay="{{ $index * 0.2 + 0.1 }}s"
+                                    src="{{ asset('storage/' . $galeri->gambar) }}">
+                            </div>
+                        @endforeach
+
+                        <!-- Placeholder images if less than 4 images in the second column -->
+                        @for ($i = $images->count(); $i < 4; $i++)
+                            <div class="col-6 {{ $i % 2 == 0 ? 'text-start' : 'text-end' }}">
+                                <img class="img-fluid rounded w-100 wow zoomIn"
+                                    data-wow-delay="{{ ($i + $images->count()) * 0.2 + 0.1 }}s"
+                                    src="{{ asset('assets/img/placeholder.jpg') }}" alt="Placeholder">
+                            </div>
+                        @endfor
                     </div>
                 </div>
 
+                @if ($imageCount < 8)
+                    <div class="col-12">
+                        <p class="text-danger">Gallery is currently empty or contains fewer than 8 images.</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
+
     <!-- About End -->
 
 

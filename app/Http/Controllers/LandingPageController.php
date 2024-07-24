@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Blog;
+use App\Models\Galeri;
 use App\Models\KategoriProduk;
 use App\Models\Produk;
 use App\Models\Sosmed;
@@ -16,6 +17,8 @@ class LandingPageController extends Controller
 {
     public function index()
     {
+        $galeriItems = Galeri::all(); // Retrieve all gallery items
+        $galeriCount = $galeriItems->count();
         // $categories = KategoriProduk::with('products')->get();
         $categories = DB::table('kategori_produk')
             ->join('produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
@@ -27,7 +30,7 @@ class LandingPageController extends Controller
         $testies = Testimoni::all();
         $blogs = Blog::all(); // Fetch all blog entries
 
-        return view('landingpage.index', compact('categories', 'products', 'testies', 'blogs'));
+        return view('landingpage.index', compact('galeriItems', 'galeriCount', 'categories', 'products', 'testies', 'blogs'));
     }
 
 

@@ -147,6 +147,26 @@
         });
     }
 
+    function confirmDeleteGaleri(event, url) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var form = document.getElementById('delete-galeri-form');
+                form.action = url;
+                form.submit();
+            }
+        });
+    }
+
+
     $('#editKategoriProdukModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget) // Button yang memicu modal
         var id = button.data('id') // Extract info from data-* attributes
@@ -199,5 +219,15 @@
         modal.find('.modal-body #edit-blog-id').val(id);
         modal.find('.modal-body #edit-judul').val(judul);
         modal.find('.modal-body #edit-konten').val(konten);
+    });
+
+    $('#editGaleriModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var id = button.data('id'); // Extract info from data-* attributes
+        var gambar = button.data('gambar');
+
+        var modal = $(this);
+        modal.find('.modal-body #edit-galeri-id').val(id);
+        modal.find('.modal-body #current-gambar').val(gambar); // Assuming you want to show current image info
     });
 </script>
